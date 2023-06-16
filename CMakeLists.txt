@@ -4,7 +4,7 @@ project(
     VERSION 1.0.0
     DESCRIPTION "A dynamic library interface system for C99."
     HOMEPAGE_URL "https://www.github.com/williamistGitHub/interface-sys"
-    LANGUAGES C, CXX
+    LANGUAGES C CXX
 )
 set(CMAKE_C_STANDARD 99)
 
