@@ -29,7 +29,7 @@ FetchContent_MakeAvailable(interface-sys)
 # your app code goes here
 add_executable(YourProject)
 target_sources(YourProject PRIVATE app.c)
-target_link_libraries(YourProject PRIVATE interface-sys)
+target_link_libraries(YourProject PRIVATE interface_sys)
 ```
 
 Look at the [examples](https://github.com/williamistGitHub/interface-sys/tree/main/examples) for how to use the library in code.
