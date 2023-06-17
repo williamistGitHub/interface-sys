@@ -11,6 +11,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Configure
-      run: cmake -B ${{github.workspace}}/build -DBUILD_EXAMPLES=OFF
+      run: cmake -B ${{github.workspace}}/build -DBUILD_EXAMPLES=OFF -DBUILD_TESTING=ON
     - name: Build
-      run: cmake --build ${{github.workspace}}/build
+      run: cmake --build ${{github.workspace}}/build --config Release
+    - name: Test
+      run: ctest -C Release

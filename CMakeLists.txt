@@ -17,7 +17,12 @@ file(GLOB_RECURSE LIB_SRC src/*.c)
 file(GLOB_RECURSE LIB_HDR include/*.h)
 add_library(interface_sys STATIC ${LIB_SRC} ${LIB_HDR})
 
-# Example project(s)
+# Tests
+include(CTest)
+if(BUILD_TESTING)
+    add_subdirectory(tests)
+endif()
+
 # I want to eventually move this into multiple CMakeLists.txt files in each example's folder, but for now, this works.
 if(${BUILD_EXAMPLES})
 
