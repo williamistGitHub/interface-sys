@@ -19,6 +19,8 @@ add_library(interface_sys STATIC ${LIB_SRC} ${LIB_HDR})
 set_property(TARGET interface_sys PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 # Tests
+# We dont build tests by default, since that would be bad for users of the library
+option(BUILD_TESTING "Build tests for the interface system" OFF)
 include(CTest)
 if(BUILD_TESTING)
     add_subdirectory(tests)
