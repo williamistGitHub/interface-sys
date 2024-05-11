@@ -4,7 +4,7 @@
 #include "interface_sys.h"
 
 interface IBasicInterfaceV0 {
-    void(*Func1)();
+    IFUNC(void, Func1);
 };
 
 typedef struct IBasicInterfaceV0 IBasicInterface;

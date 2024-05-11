@@ -5,7 +5,7 @@ void Func1_v0() {
     // hmm yes this is a very useful function
 }
 
-IMPL_INTERFACE(IBasicInterfaceV0, Func1_v0)
+IMPL_INTERFACE(IBasicInterfaceV0, Func1_v0);
 
 START_INTERFACE_EXPORT()
     EXPORT_INTERFACE(IBasicInterfaceV0, "IBASICINTERFACE_V000")

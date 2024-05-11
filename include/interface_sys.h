@@ -23,8 +23,11 @@
 #define interface struct
 #endif // NO_INTERFACE_KEYWORD
 
+// easier to read function pointer syntax for interfaces
+#define IFUNC(retType, name, ...) retType (* name )( __VA_ARGS__ )
+
 #define DECL_INTERFACE_IMPL(iName) extern struct iName __g_##iName##_impl
-#define IMPL_INTERFACE(iName, ...) struct iName __g_##iName##_impl = { __VA_ARGS__ };
+#define IMPL_INTERFACE(iName, ...) struct iName __g_##iName##_impl = { __VA_ARGS__ }
 
 typedef void*(*ReqInterfaceFn)(const char* interfaceName);
 

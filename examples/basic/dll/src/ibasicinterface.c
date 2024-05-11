@@ -20,9 +20,9 @@ double Sum_V1(float a, float b) {
 IMPL_INTERFACE(IBasicInterfaceV0,
     DoSomething,
     Sum_V0
-)
+);
 
 IMPL_INTERFACE(IBasicInterfaceV1,
     DoSomething,
     Sum_V1
-)
+);

@@ -5,6 +5,11 @@
 
 #include "ibasicinterface.h"
 
+// declare the implementations of the interfaces, so we can export them
+// this could be done here or in the exports file, it doesnt really matter
+DECL_INTERFACE_IMPL(IBasicInterfaceV0);
+DECL_INTERFACE_IMPL(IBasicInterfaceV1);
+
 START_INTERFACE_EXPORT()
     EXPORT_INTERFACE(IBasicInterfaceV0, "IBASICINTERFACE_V000")
     EXPORT_INTERFACE(IBasicInterfaceV1, "IBASICINTERFACE_V001")

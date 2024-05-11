@@ -16,6 +16,7 @@ include_directories(include)
 file(GLOB_RECURSE LIB_SRC src/*.c)
 file(GLOB_RECURSE LIB_HDR include/*.h)
 add_library(interface_sys STATIC ${LIB_SRC} ${LIB_HDR})
+target_include_directories(interface_sys PRIVATE include)
 set_property(TARGET interface_sys PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 # Tests
