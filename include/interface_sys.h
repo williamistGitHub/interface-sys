@@ -39,15 +39,15 @@ extern "C" {
 DynamicModule LoadDynModule(const char* name);
 ReqInterfaceFn GetInterfaceFn(DynamicModule module);
 void UnloadDynModule(DynamicModule module);
-#ifdef __cplusplus
-}
-#endif
 
 typedef struct {
   void* impl;
   const char* version;
 } interface_export_t;
 extern interface_export_t allExportedInterfaces[];
+#ifdef __cplusplus
+}
+#endif
 
 // the function here is to make sure the static library gets imported, compilers like to not import it if you dont call any of the functions and this prevents that
 #define START_INTERFACE_EXPORT() void __GENERATED_(void){UnloadDynModule((DynamicModule)0);} \
