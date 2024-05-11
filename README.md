@@ -21,7 +21,7 @@ set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 FetchContent_Declare(
     interface-sys
     GIT_REPOSITORY https://github.com/williamistGitHub/interface-sys.git
-    GIT_TAG v1.0.0
+    GIT_TAG v1.0.1
 )
 
 FetchContent_MakeAvailable(interface-sys)

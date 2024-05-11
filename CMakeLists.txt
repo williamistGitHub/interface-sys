@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(
     CInterfaceSys
-    VERSION 1.0.0
+    VERSION 1.0.1
     DESCRIPTION "A dynamic library interface system for C99."
     HOMEPAGE_URL "https://www.github.com/williamistGitHub/interface-sys"
     LANGUAGES C CXX
