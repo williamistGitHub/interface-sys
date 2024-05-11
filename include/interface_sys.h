@@ -33,9 +33,15 @@ typedef void*(*ReqInterfaceFn)(const char* interfaceName);
 
 typedef void* DynamicModule;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 DynamicModule LoadDynModule(const char* name);
 ReqInterfaceFn GetInterfaceFn(DynamicModule module);
 void UnloadDynModule(DynamicModule module);
+#ifdef __cplusplus
+}
+#endif
 
 typedef struct {
   void* impl;
