@@ -23,6 +23,12 @@
 #define interface struct
 #endif // NO_INTERFACE_KEYWORD
 
+#ifdef ISYS_DEBUG
+#define DEBUG_PRINT(...) printf(__VA_ARGS__)
+#else
+#define DEBUG_PRINT(...)
+#endif
+
 // easier to read function pointer syntax for interfaces
 #define IFUNC(retType, name, ...) retType (* name )( __VA_ARGS__ )
 

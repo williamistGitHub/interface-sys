@@ -9,6 +9,7 @@ project(
 set(CMAKE_C_STANDARD 99)
 
 option(BUILD_EXAMPLES "Build interface system example project(s)" OFF)
+option(_ISYS_DEBUG "Build debugging print statements into the library. Not intended for users." OFF)
 
 include_directories(include)
 
@@ -18,6 +19,7 @@ file(GLOB_RECURSE LIB_HDR include/*.h)
 add_library(interface_sys STATIC ${LIB_SRC} ${LIB_HDR})
 target_include_directories(interface_sys PUBLIC include)
 set_property(TARGET interface_sys PROPERTY POSITION_INDEPENDENT_CODE ON)
+add_compile_definitions(ISYS_DEBUG=${_ISYS_DEBUG})
 
 # Tests
 # We dont build tests by default, since that would be bad for users of the library

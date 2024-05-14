@@ -55,12 +55,16 @@ LPTSTR GetLastErrorString() {
 #endif // _WIN32
 
 EXPORT_RI RequestInterface(const char* name) {
+    DEBUG_PRINT("Attempting to find interface '%s'\n", name);
     for (int i = 0; allExportedInterfaces[i].impl != NULL; i++) {
         interface_export_t* exp = &allExportedInterfaces[i];
+        DEBUG_PRINT("Found '%s'\n", exp->version);
         if (strncmp(name, exp->version, 256) == 0) {
             return exp->impl;
         }
     }
+
+    DEBUG_PRINT("Couldn't find it!");
 
     return NULL;
 }
