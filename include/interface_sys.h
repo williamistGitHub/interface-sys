@@ -52,7 +52,6 @@ typedef struct {
   void* impl;
   const char* version;
 } interface_export_t;
-extern interface_export_t allExportedInterfaces[];
 #ifdef __cplusplus
 }
 #endif
@@ -64,6 +63,7 @@ extern interface_export_t allExportedInterfaces[];
 #endif // _WIN32
 
 #define IMPL_REQUESTINTERFACE REQUESTINTERFACE_EXPORT RequestInterface(const char* name) { \
+    DEBUG_PRINT("RequestInterface loaded from " __FILE__ "\n"); \
     DEBUG_PRINT("Attempting to find interface '%s'\n", name); \
     for (int i = 0; allExportedInterfaces[i].impl != 0; i++) { \
         interface_export_t* exp = &allExportedInterfaces[i]; \
@@ -73,14 +73,14 @@ extern interface_export_t allExportedInterfaces[];
         } \
     } \
 \
-    DEBUG_PRINT("Couldn't find it!"); \
+    DEBUG_PRINT("Couldn't find it!\n"); \
 \
     return 0; \
 }
 
 // the __GENERATED_ function here is to make sure the static library gets imported, compilers like to not import it if you dont call any of the functions and this prevents that
 #define START_INTERFACE_EXPORT() IMPL_REQUESTINTERFACE void __GENERATED_(void){UnloadDynModule((DynamicModule)0);} \
-	interface_export_t allExportedInterfaces[] = {
+	static interface_export_t allExportedInterfaces[] = {
 #define EXPORT_INTERFACE(iName, ver) { (void*)(&__g_##iName##_impl), ver },
 #define END_INTERFACE_EXPORT() {0, 0}};
 

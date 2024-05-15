@@ -24,7 +24,7 @@ int main() {
     // try and get the interface from the module using the function
     IBasicInterface* i = fn(IBASICINTERFACE_VERSION);
     if (i == NULL) {
-        printf("Error: couldn't get interface %s", IBASICINTERFACE_VERSION);
+        printf("Error: couldn't get interface %s\n", IBASICINTERFACE_VERSION);
         UnloadDynModule(module);
         return 0;
     }

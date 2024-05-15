@@ -108,7 +108,7 @@ void UnloadDynModule(DynamicModule module) {
     // FreeLibrary fails if 0, display message.
     if (FreeLibrary((HMODULE)module) == 0) {
         LPTSTR err = GetLastErrorString();
-        printf("Error while unloading a module: %s", err);
+        printf("Error while unloading a module: %s\n", err);
         LocalFree(err);
     }
 #endif
