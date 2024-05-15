@@ -79,9 +79,9 @@ typedef struct {
 }
 
 // the __GENERATED_ function here is to make sure the static library gets imported, compilers like to not import it if you dont call any of the functions and this prevents that
-#define START_INTERFACE_EXPORT() IMPL_REQUESTINTERFACE void __GENERATED_(void){UnloadDynModule((DynamicModule)0);} \
+#define START_INTERFACE_EXPORT() void __GENERATED_(void){UnloadDynModule((DynamicModule)0);} \
 	static interface_export_t allExportedInterfaces[] = {
 #define EXPORT_INTERFACE(iName, ver) { (void*)(&__g_##iName##_impl), ver },
-#define END_INTERFACE_EXPORT() {0, 0}};
+#define END_INTERFACE_EXPORT() {0, 0}}; IMPL_REQUESTINTERFACE
 
 #endif // INTERFACE_SYS_H
