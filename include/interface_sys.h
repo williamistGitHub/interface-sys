@@ -23,7 +23,9 @@
 #define interface struct
 #endif // NO_INTERFACE_KEYWORD
 
+#include <string.h>
 #ifdef ISYS_DEBUG
+#include <stdio.h>
 #define DEBUG_PRINT(...) printf(__VA_ARGS__)
 #else
 #define DEBUG_PRINT(...)
@@ -55,8 +57,29 @@ extern interface_export_t allExportedInterfaces[];
 }
 #endif
 
-// the function here is to make sure the static library gets imported, compilers like to not import it if you dont call any of the functions and this prevents that
-#define START_INTERFACE_EXPORT() void __GENERATED_(void){UnloadDynModule((DynamicModule)0);} \
+#ifndef _WIN32
+#define REQUESTINTERFACE_EXPORT void* __attribute__((visibility("default")))
+#else // _WIN32
+#define REQUESTINTERFACE_EXPORT __declspec(dllexport) void*
+#endif // _WIN32
+
+#define IMPL_REQUESTINTERFACE REQUESTINTERFACE_EXPORT RequestInterface(const char* name) { \
+    DEBUG_PRINT("Attempting to find interface '%s'\n", name); \
+    for (int i = 0; allExportedInterfaces[i].impl != 0; i++) { \
+        interface_export_t* exp = &allExportedInterfaces[i]; \
+        DEBUG_PRINT("Found '%s'\n", exp->version); \
+        if (strncmp(name, exp->version, 256) == 0) { \
+            return exp->impl; \
+        } \
+    } \
+\
+    DEBUG_PRINT("Couldn't find it!"); \
+\
+    return 0; \
+}
+
+// the __GENERATED_ function here is to make sure the static library gets imported, compilers like to not import it if you dont call any of the functions and this prevents that
+#define START_INTERFACE_EXPORT() IMPL_REQUESTINTERFACE void __GENERATED_(void){UnloadDynModule((DynamicModule)0);} \
 	interface_export_t allExportedInterfaces[] = {
 #define EXPORT_INTERFACE(iName, ver) { (void*)(&__g_##iName##_impl), ver },
 #define END_INTERFACE_EXPORT() {0, 0}};

@@ -18,7 +18,6 @@
 
 #include "interface_sys.h"
 #include <stdio.h>
-#include <string.h>
 
 #ifndef _WIN32
 #include <dlfcn.h>
@@ -47,28 +46,6 @@ LPTSTR GetLastErrorString() {
     return allocBuf;
 }
 #endif
-
-#ifndef _WIN32
-#define EXPORT_RI void* __attribute__((visibility("default")))
-#else // _WIN32
-#define EXPORT_RI __declspec(dllexport) void*
-#endif // _WIN32
-
-EXPORT_RI RequestInterface(const char* name) {
-    DEBUG_PRINT("Attempting to find interface '%s'\n", name);
-    for (int i = 0; allExportedInterfaces[i].impl != NULL; i++) {
-        interface_export_t* exp = &allExportedInterfaces[i];
-        DEBUG_PRINT("Found '%s'\n", exp->version);
-        if (strncmp(name, exp->version, 256) == 0) {
-            return exp->impl;
-        }
-    }
-
-    DEBUG_PRINT("Couldn't find it!");
-
-    return NULL;
-}
-#undef EXPORT_RI
 
 // Cross-platform(-ish) way of loading dynamic libraries. 
 DynamicModule LoadDynModule(const char *name) {
