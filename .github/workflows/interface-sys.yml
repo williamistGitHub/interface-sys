@@ -15,4 +15,4 @@ jobs:
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config Release
     - name: Test
-      run: ctest -C Release
+      run: cd ${{github.workspace}}/build ctest -C Release
