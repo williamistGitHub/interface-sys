@@ -1,2 +1,5 @@
 # cmake build file directory (USE THIS!!)
 build/*
+
+# Fucking clangd I swear
+.cache
