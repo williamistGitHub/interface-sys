@@ -54,6 +54,8 @@ DynamicModule LoadDynModule(const char *name) {
 
     char realPath[PATH_MAX];
     sprintf(realPath, "lib%s.so", name);
+    //printf("lib%s.so", name);
+
     realpath(realPath, realPath);
 
     void* m = dlopen(realPath, RTLD_NOW | RTLD_GLOBAL);

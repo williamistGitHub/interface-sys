@@ -39,7 +39,7 @@ if(${BUILD_EXAMPLES})
     add_library(example_basic_dll SHARED ${EXAMPLE_BASIC_DLL_SRC} ${EXAMPLE_BASIC_HDR})
     target_include_directories(example_basic_dll PRIVATE examples/basic/include) # include shared headers
     target_link_libraries(example_basic_dll interface_sys) # link interface system
-
+    
     file(GLOB_RECURSE EXAMPLE_BASIC_EXE_SRC examples/basic/exe/src/*.c)
     add_executable(example_basic_exe ${EXAMPLE_BASIC_EXE_SRC}  ${EXAMPLE_BASIC_HDR})
     target_include_directories(example_basic_exe PRIVATE examples/basic/include) # include shared headers
