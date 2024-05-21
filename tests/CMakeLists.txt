@@ -29,7 +29,8 @@ endmacro(test_cpp)
 macro(test_dep_cpp name)
     add_library(tdcpp__${name} SHARED
     ${CMAKE_SOURCE_DIR}/tests/${name}_dll_cpp.cpp)
-    set_target_properties(tdcpp__${name} PROPERTIES OUTPUT_NAME "${name}") # make sure output doesnt have "td__" prefixs
+    set_target_properties(tdcpp__${name} PROPERTIES OUTPUT_NAME
+    "${name}_cpp") # make sure output doesnt have "td__" prefixs
     target_link_libraries(tdcpp__${name} interface_sys)
     target_include_directories(tdcpp__${name} PRIVATE tests)
 endmacro(test_dep_cpp)
@@ -42,5 +43,5 @@ test(get_interface_func)
 test(get_interface)
 test(run_interface_func)
 
-test_cpp(basic_test)
 test_dep_cpp(basic_interface)
+test_cpp(basic_test)
